@@ -1308,35 +1308,36 @@ body.lightbox-open {
     flex-shrink: 0;
   }
 
-  .nav {
+  #nav.nav {
     top: var(--header-h);
+    bottom: 0;
+    left: unset;
     right: 0;
-    left: auto;
     z-index: 110;
     width: min(18rem, 80vw);
     max-width: 100%;
-    height: calc(100vh - var(--header-h));
-    height: calc(100dvh - var(--header-h));
+    height: auto;
     display: flex;
     align-items: stretch;
     justify-content: flex-start;
     background: #141414;
+    border: 0;
     border-left: 1px solid var(--color-border);
     padding: 1.25rem 1.25rem 2rem;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     pointer-events: none;
     visibility: hidden;
-    transform: translateX(100%);
+    transform: translate3d(100%, 0, 0);
     transition:
       transform 0.35s var(--ease-out),
       visibility 0.35s;
   }
 
-  .nav.is-open {
+  #nav.nav.is-open {
     visibility: visible;
     pointer-events: auto;
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 
   .nav-overlay {
