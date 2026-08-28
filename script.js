@@ -24,10 +24,14 @@
 
     if (open) {
       navOverlay.hidden = false;
+      requestAnimationFrame(() => navOverlay.classList.add("is-open"));
       document.body.style.overflow = "hidden";
     } else {
-      navOverlay.hidden = true;
+      navOverlay.classList.remove("is-open");
       document.body.style.overflow = "";
+      window.setTimeout(() => {
+        if (!navOverlay.classList.contains("is-open")) navOverlay.hidden = true;
+      }, 350);
     }
   };
 
@@ -49,7 +53,7 @@
       if (!isMobileNav()) closeMenu();
     });
 
-    /* Edge swipe open (right → left) / swipe close (left → right) */
+    /* Edge swipe open (left edge → right) / swipe close (right → left) */
     let swipeStartX = 0;
     let swipeStartY = 0;
     let swipeFromEdge = false;
@@ -61,8 +65,7 @@
         const touch = event.touches[0];
         swipeStartX = touch.clientX;
         swipeStartY = touch.clientY;
-        swipeFromEdge =
-          !isMenuOpen() && swipeStartX >= window.innerWidth - EDGE_PX;
+        swipeFromEdge = !isMenuOpen() && swipeStartX <= EDGE_PX;
       },
       { passive: true }
     );
@@ -76,12 +79,12 @@
         const dy = touch.clientY - swipeStartY;
         if (Math.abs(dx) < SWIPE_PX || Math.abs(dx) <= Math.abs(dy)) return;
 
-        if (!isMenuOpen() && swipeFromEdge && dx < 0) {
+        if (!isMenuOpen() && swipeFromEdge && dx > 0) {
           setMenuOpen(true);
           return;
         }
 
-        if (isMenuOpen() && dx > 0) {
+        if (isMenuOpen() && dx < 0) {
           closeMenu();
         }
       },
