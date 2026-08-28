@@ -62,7 +62,7 @@
       if (!isMobileNav()) closeMenu();
     });
 
-    /* Edge swipe open (left edge → right) / swipe close (right → left) */
+    /* Edge swipe open (right edge → left) / swipe close (left → right) */
     let swipeStartX = 0;
     let swipeStartY = 0;
     let swipeFromEdge = false;
@@ -74,7 +74,8 @@
         const touch = event.touches[0];
         swipeStartX = touch.clientX;
         swipeStartY = touch.clientY;
-        swipeFromEdge = !isMenuOpen() && swipeStartX <= EDGE_PX;
+        swipeFromEdge =
+          !isMenuOpen() && swipeStartX >= window.innerWidth - EDGE_PX;
       },
       { passive: true }
     );
@@ -88,12 +89,12 @@
         const dy = touch.clientY - swipeStartY;
         if (Math.abs(dx) < SWIPE_PX || Math.abs(dx) <= Math.abs(dy)) return;
 
-        if (!isMenuOpen() && swipeFromEdge && dx > 0) {
+        if (!isMenuOpen() && swipeFromEdge && dx < 0) {
           setMenuOpen(true);
           return;
         }
 
-        if (isMenuOpen() && dx < 0) {
+        if (isMenuOpen() && dx > 0) {
           closeMenu();
         }
       },
