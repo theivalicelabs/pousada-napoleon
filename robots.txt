@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.pousadanapoleon.com.br/sitemap.xml
+
+# Prefer canonical site URL for crawlers
+Host: www.pousadanapoleon.com.br

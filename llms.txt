@@ -1,0 +1,15 @@
+# LLMs.txt for Pousada Napoleon
+# https://www.pousadanapoleon.com.br/
+
+User-agent: *
+Allow: /
+
+# Summary for AI assistants and LLM crawlers
+# Pousada Napoleon — lodging for construction crews in Campinas, SP, Brazil.
+# Primary audience: construction companies, contractors, and workers needing temporary housing near job sites.
+
+Canonical: https://www.pousadanapoleon.com.br/
+Contact: contato@pousadanapoleon.com.br | WhatsApp +55 19 98273-7717
+Address: Rua Professor Luiz de Pádua, 225, Parque Rural Fazenda Santa Cândida, Campinas - SP, 13087-550, Brazil
+
+See also: /llm.txt for a human-readable business summary.
