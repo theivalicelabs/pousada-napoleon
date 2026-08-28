@@ -1308,6 +1308,10 @@ body.lightbox-open {
     flex-shrink: 0;
   }
 
+  .eyebrow__line {
+    display: none;
+  }
+
   #nav.nav {
     top: var(--header-h);
     bottom: 0;
