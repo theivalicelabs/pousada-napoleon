@@ -1,4 +1,13 @@
 (() => {
+  const WHATSAPP_PHONE = "5519982737717";
+  const WHATSAPP_MESSAGE =
+    "Olá! Vim pelo site www.pousadanapoleon.com.br e gostaria de informações sobre hospedagem ou reserva.";
+  const WHATSAPP_URL = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+
+  document.querySelectorAll('a[href*="wa.me/5519982737717"]').forEach((link) => {
+    link.href = WHATSAPP_URL;
+  });
+
   const header = document.querySelector(".header");
   const navToggle = document.querySelector("#menu-toggle");
   const nav = document.querySelector("#nav");
