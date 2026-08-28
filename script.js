@@ -261,8 +261,8 @@
 
   const applyTransform = (animate = true) => {
     if (!track) return;
-    if (!animate || prefersReducedMotion) track.style.transition = "none";
-    else track.style.transition = "";
+    if (!animate || prefersReducedMotion) track.classList.add("is-instant");
+    else track.classList.remove("is-instant");
     currentTranslate = -index * getSlideWidth();
     track.style.transform = `translate3d(${currentTranslate + dragOffset}px, 0, 0)`;
   };
@@ -297,7 +297,7 @@
       startX = clientX;
       dragOffset = 0;
       viewport?.classList.add("is-dragging");
-      track.style.transition = "none";
+      track.classList.add("is-instant");
     };
 
     const onPointerMove = (clientX) => {
@@ -364,7 +364,21 @@
   let lbTouchX = 0;
   let lightboxOpen = false;
 
-  const updateLightbox = () => {
+  const playLightboxEnter = (direction) => {
+    if (!lightboxImg || prefersReducedMotion) return;
+    lightboxImg.classList.remove("is-entering-from-right", "is-entering-from-left");
+    void lightboxImg.offsetWidth;
+    lightboxImg.classList.add(direction > 0 ? "is-entering-from-right" : "is-entering-from-left");
+    lightboxImg.addEventListener(
+      "animationend",
+      () => {
+        lightboxImg.classList.remove("is-entering-from-right", "is-entering-from-left");
+      },
+      { once: true }
+    );
+  };
+
+  const updateLightbox = (direction = 0) => {
     const img = contentImages[lbIndex];
     if (!img || !lightboxImg) return;
     lightboxImg.src = img.currentSrc || img.src;
@@ -373,6 +387,7 @@
     if (lightboxCounter) {
       lightboxCounter.textContent = `${lbIndex + 1} / ${contentImages.length}`;
     }
+    if (direction !== 0) playLightboxEnter(direction);
   };
 
   const openLightbox = (startIndex) => {
@@ -399,7 +414,7 @@
   const stepLightbox = (delta) => {
     if (!contentImages.length) return;
     lbIndex = (lbIndex + delta + contentImages.length) % contentImages.length;
-    updateLightbox();
+    updateLightbox(delta);
   };
 
   contentImages.forEach((img, i) => {

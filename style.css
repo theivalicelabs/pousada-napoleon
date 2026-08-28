@@ -709,6 +709,12 @@ img.icon--whatsapp {
   gap: var(--gallery-gap);
   will-change: transform;
   touch-action: pan-y;
+  transition: transform 0.48s var(--ease-out);
+}
+
+.gallery__viewport.is-dragging .gallery__track,
+.gallery__track.is-instant {
+  transition: none;
 }
 
 .gallery__slide {
@@ -870,6 +876,7 @@ img.icon--whatsapp {
   max-height: 80vh;
   touch-action: pan-y;
   user-select: none;
+  overflow: hidden;
 }
 
 .lightbox__img {
@@ -882,6 +889,39 @@ img.icon--whatsapp {
   border-radius: var(--radius-md);
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
   background: #0a0a0a;
+  transition: transform 0.45s var(--ease-out), opacity 0.45s var(--ease-out);
+}
+
+.lightbox__img.is-entering-from-right {
+  animation: lightbox-enter-right 0.45s var(--ease-out);
+}
+
+.lightbox__img.is-entering-from-left {
+  animation: lightbox-enter-left 0.45s var(--ease-out);
+}
+
+@keyframes lightbox-enter-right {
+  from {
+    opacity: 0.4;
+    transform: translateX(2.5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes lightbox-enter-left {
+  from {
+    opacity: 0.4;
+    transform: translateX(-2.5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .lightbox__caption {
@@ -1157,8 +1197,10 @@ body.lightbox-open {
   .card,
   .whatsapp-float,
   .nav,
-  .nav-overlay {
+  .nav-overlay,
+  .lightbox__img {
     transition: none;
+    animation: none !important;
   }
 }
 
