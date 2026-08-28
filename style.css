@@ -48,7 +48,7 @@
   --space-12: 3rem;
   --space-16: 4rem;
   --space-20: 5rem;
-  --space-24: 6rem;
+  --space-24: 2.75rem;
 
   --container: 1280px;
   --gutter: 5rem;
@@ -373,6 +373,10 @@ img.icon--whatsapp {
   color: var(--color-text-dark);
 }
 
+.section--light + .section--light {
+  padding-top: 1.25rem;
+}
+
 .section--light .section__header h2,
 .section--light h2,
 .section--light h3 {
@@ -395,7 +399,7 @@ img.icon--whatsapp {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  margin-bottom: var(--space-10);
+  margin-bottom: 1.25rem;
   max-width: 56rem;
 }
 
@@ -520,7 +524,7 @@ img.icon--whatsapp {
    Hero
    ======================================== */
 .hero {
-  padding-block: 4.5rem;
+  padding-block: 2.5rem 2.75rem;
   background: var(--color-bg-light);
   color: var(--color-text-dark);
 }
@@ -528,7 +532,7 @@ img.icon--whatsapp {
 .hero__grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(280px, 520px);
-  gap: 4rem;
+  gap: 2.5rem;
   align-items: center;
 }
 
@@ -616,7 +620,7 @@ img.icon--whatsapp {
 .location__grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(280px, 520px);
-  gap: 4rem;
+  gap: 2.5rem;
   align-items: start;
 }
 
@@ -666,7 +670,7 @@ img.icon--whatsapp {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .history__figure {
@@ -1050,7 +1054,7 @@ body.lightbox-open {
    Final CTA
    ======================================== */
 .cta {
-  padding-block: 5rem;
+  padding-block: 2.75rem;
   background: var(--color-bg);
   text-align: center;
 }
@@ -1080,9 +1084,9 @@ body.lightbox-open {
 .footer__top {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-  gap: 4rem;
+  gap: 2.5rem;
   align-items: start;
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
 }
 
 .footer__brand {
@@ -1310,6 +1314,10 @@ body.lightbox-open {
 
   .eyebrow__line {
     display: none;
+  }
+
+  .section--light + .section--light {
+    padding-top: 0;
   }
 
   #nav.nav {
